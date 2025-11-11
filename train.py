@@ -18,7 +18,7 @@ model = LinearRegression()
 model.fit(X,y)
 
 #Save model in a pickle 
-filename = "model_1.pkl"
+filename = "model_1.pickle"
 with open(filename, "wb") as file:
     pickle.dump(model, file)
 
@@ -36,3 +36,8 @@ y = np.array(data["rating"])
 #Fit model 
 model = DecisionTreeClassifier()
 model.fit(X,y)
+
+#Save in pickle 
+filename = "model_2.pickle"
+with open(filename, "wb") as file:
+    pickle.dump(model, file)
