@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np 
 from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import LabelEncoder
 import pickle
 
 #Exercise 1
@@ -19,3 +21,18 @@ model.fit(X,y)
 filename = "model_1.pkl"
 with open(filename, "wb") as file:
     pickle.dump(model, file)
+
+
+#Exercise 2
+#Transform the categorical variable to numeric 
+#This seemed more elegant than creating a new function to do the recode 
+le = LabelEncoder()
+data["roast_cat"] = le.fit_transform(data["roast"])
+
+#Set up input data
+X = data[["100g_USD", "roast_cat"]].to_numpy()
+y = np.array(data["rating"])
+
+#Fit model 
+model = DecisionTreeClassifier()
+model.fit(X,y)
